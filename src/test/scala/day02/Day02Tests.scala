@@ -14,7 +14,7 @@ class Day02Tests extends TestSuite {
     //val input = resourceAsString("SimpleInput.txt").split("\n")
     val input = resourceAsString("Input.txt").split("\n")
     val result = input.count(row => isSafeWithDampener(row.split(" ")))
-    Console.println(result) // result = 534
+    Console.println(result) // result = 577
   }
 
   private def isSafe(strings: Array[String]): Boolean = {
