@@ -13,5 +13,5 @@ import scala.util.Using
 trait TestSuite extends AnyFunSuite with org.scalatest.TestSuite with Matchers {
   def mkString(inputStream: InputStream): String = IOUtils.toString(inputStream, StandardCharsets.UTF_8)
 
-  def resourceAsString(path: String): String = Using.resource(getClass.getResourceAsStream(path))(mkString(_))
+  def resourceAsString(path: String): String = Using.resource(getClass.getResourceAsStream(path))(mkString)
 }

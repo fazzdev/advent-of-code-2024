@@ -1,5 +1,6 @@
 package day02
 
+import utility.Extensions.*
 import utility.TestSuite
 
 class Day02Tests extends TestSuite {
@@ -18,14 +19,12 @@ class Day02Tests extends TestSuite {
   }
 
   private def isSafe(strings: Array[String]): Boolean = {
-    val diff = strings.zip(strings.drop(1)).map((value1, value2) => value1.toInt - value2.toInt)
-    if(diff.head < 0) diff.forall(v => -4 < v && v < 0)
+    val diff = strings.zipDropOne().map((value1, value2) => value1.toInt - value2.toInt)
+    if (diff.head < 0) diff.forall(v => -4 < v && v < 0)
     else diff.forall(v => 0 < v && v < 4)
   }
 
   private def isSafeWithDampener(strings: Array[String]): Boolean = {
-    def remove(index: Int) = strings.take(index) ++ strings.drop(index + 1)
-
-    isSafe(strings) || (0 to strings.length).exists(index => isSafe(remove(index)))
+    isSafe(strings) || (0 to strings.length).exists(index => isSafe(strings.remove(index)))
   }
 }
